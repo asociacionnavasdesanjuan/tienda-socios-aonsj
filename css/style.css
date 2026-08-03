@@ -78,3 +78,27 @@ button:hover{
     padding:25px;
     box-shadow:0 8px 20px rgba(0,0,0,.12);
 }
+.menu{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    padding:20px;
+    background:#ffffff;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.menu a{
+    background:#0b6b3b;
+    color:white;
+    padding:12px 18px;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.menu a:hover{
+    background:#25D366;
+    transform:translateY(-3px);
+}

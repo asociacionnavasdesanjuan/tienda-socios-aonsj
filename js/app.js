@@ -1,6 +1,23 @@
 let carrito = [];
 
-function añadirProducto(nombre, precio){
+function añadirProducto(boton, nombre, precio){
+
+    let cantidad = parseInt(
+        boton.parentElement.querySelector("input").value
+    );
+
+    for(let i = 0; i < cantidad; i++){
+
+        carrito.push({
+            nombre:nombre,
+            precio:precio
+        });
+
+    }
+
+    actualizarCarrito();
+
+}function añadirProducto(nombre, precio){
 
     carrito.push({
         nombre:nombre,

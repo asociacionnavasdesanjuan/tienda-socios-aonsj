@@ -3,104 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tienda del Socio - AONSJ</title>
+<title>Tienda Oficial del Socio</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
-}
 
 body{
-background:#f2f5f3;
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#f5f5f5;
 }
 
 header{
-background:#1b5e20;
-color:white;
+background:#0b6b3b;
 padding:20px;
 text-align:center;
-position:sticky;
-top:0;
+color:white;
 }
 
-header h1{
-font-size:30px;
+header img{
+width:120px;
 }
 
-#buscar{
-width:90%;
-max-width:500px;
-padding:12px;
-margin-top:15px;
-border-radius:30px;
-border:none;
-font-size:16px;
+h1{
+margin:10px 0;
 }
 
 .grid{
+
 display:grid;
+
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
 gap:20px;
+
 padding:30px;
+
+max-width:1200px;
+
+margin:auto;
+
 }
 
-.card{
+.producto{
+
 background:white;
+
 border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+box-shadow:0 0 15px rgba(0,0,0,.15);
+
 overflow:hidden;
+
 text-align:center;
-padding-bottom:20px;
+
 }
 
-.card img{
+.producto img{
+
 width:100%;
-height:180px;
+
+height:200px;
+
 object-fit:cover;
-background:#ddd;
+
 }
 
-.card h2{
-margin:15px;
-color:#1b5e20;
+.producto h2{
+
+color:#0b6b3b;
+
 }
 
 .precio{
-font-size:24px;
+
+font-size:28px;
+
 font-weight:bold;
-color:#25D366;
-margin-bottom:15px;
+
+color:#0b6b3b;
+
 }
 
 button{
+
 background:#25D366;
+
 color:white;
+
 border:none;
-padding:12px 20px;
-border-radius:30px;
+
+padding:15px 30px;
+
+border-radius:8px;
+
+font-size:18px;
+
+margin:20px;
+
 cursor:pointer;
-font-size:16px;
+
 }
 
 button:hover{
-background:#1bb857;
+
+background:#0b6b3b;
+
 }
 
-#carrito{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#1b5e20;
+footer{
+
+background:#111;
+
 color:white;
-padding:15px 25px;
-border-radius:40px;
-font-size:18px;
-cursor:pointer;
-box-shadow:0 5px 15px rgba(0,0,0,.3);
+
+padding:25px;
+
+text-align:center;
+
+margin-top:40px;
+
 }
+
 </style>
 
 </head>
@@ -109,98 +132,59 @@ box-shadow:0 5px 15px rgba(0,0,0,.3);
 
 <header>
 
-<h1>🛒 Tienda del Socio</h1>
+<img src="imagen/logo.png">
+
+<h1>TIENDA DEL SOCIO</h1>
 
 <p>Asociación Ornitológica de Navas de San Juan</p>
-
-<input id="buscar" placeholder="Buscar productos...">
 
 </header>
 
 <div class="grid">
 
-<div class="card">
+<div class="producto">
 
-<img src="https://placehold.co/600x400?text=Jaula">
+<img src="https://placehold.co/400x300?text=JAULA">
 
 <h2>Jaula de Cría</h2>
 
-<div class="precio">Precio pendiente</div>
+<p class="precio">39,95 €</p>
 
-<button onclick="agregar('Jaula de Cría')">Añadir al carrito</button>
-
-</div>
-
-<div class="card">
-
-<img src="https://placehold.co/600x400?text=Bebedero">
-
-<h2>Bebedero Italiano</h2>
-
-<div class="precio">Precio pendiente</div>
-
-<button onclick="agregar('Bebedero Italiano')">Añadir al carrito</button>
+<button>Añadir al carrito</button>
 
 </div>
 
-<div class="card">
+<div class="producto">
 
-<img src="https://placehold.co/600x400?text=Comedero">
+<img src="https://placehold.co/400x300?text=COMEDERO">
 
-<h2>Comedero Exterior</h2>
+<h2>Comedero</h2>
 
-<div class="precio">Precio pendiente</div>
+<p class="precio">2,50 €</p>
 
-<button onclick="agregar('Comedero Exterior')">Añadir al carrito</button>
+<button>Añadir al carrito</button>
+
+</div>
+
+<div class="producto">
+
+<img src="https://placehold.co/400x300?text=BEBEDERO">
+
+<h2>Bebedero</h2>
+
+<p class="precio">1,20 €</p>
+
+<button>Añadir al carrito</button>
 
 </div>
 
 </div>
 
-<div id="carrito">
+<footer>
 
-🛒 Pedido (0)
+© Asociación Ornitológica de Navas de San Juan
 
-</div>
-
-<script>
-
-let pedido=[];
-
-function agregar(producto){
-
-pedido.push(producto);
-
-document.getElementById("carrito").innerHTML="🛒 Pedido ("+pedido.length+")";
-
-}
-
-document.getElementById("carrito").onclick=function(){
-
-if(pedido.length==0){
-
-alert("Todavía no has añadido productos.");
-
-return;
-
-}
-
-let texto="Hola. Soy socio de la Asociación Ornitológica de Navas de San Juan.%0A%0A";
-
-texto+="Quiero solicitar:%0A";
-
-pedido.forEach(p=>{
-
-texto+="• "+p+"%0A";
-
-});
-
-window.open("https://wa.me/34640868527?text="+texto);
-
-}
-
-</script>
+</footer>
 
 </body>
-
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tienda Oficial del Socio</title>
+<title>Asociación Ornitológica de Navas de San Juan</title>
 
 <style>
 
@@ -15,75 +15,99 @@ font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#0b6b2f,#3ea44e);
+background:#f4f4f4;
+}
+
+header{
+background:#0b6b3b;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+header img{
+width:140px;
+margin-bottom:15px;
+}
+
+nav{
+background:#0d7d45;
+padding:15px;
+text-align:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:15px;
+font-weight:bold;
+}
+
+.hero{
+background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url("https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=1600&q=80");
+background-size:cover;
+background-position:center;
+height:450px;
 display:flex;
 justify-content:center;
 align-items:center;
-min-height:100vh;
-}
-
-.tarjeta{
-background:white;
-width:95%;
-max-width:650px;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 15px 40px rgba(0,0,0,.35);
-}
-
-.cabecera{
-background:#19692c;
-padding:30px;
 text-align:center;
+color:white;
+padding:20px;
 }
 
-.cabecera img{
-width:180px;
-}
-
-.contenido{
-padding:40px;
-text-align:center;
-}
-
-h1{
-color:#19692c;
-font-size:38px;
+.hero h1{
+font-size:50px;
 margin-bottom:20px;
 }
 
-h2{
-color:#666;
-margin-bottom:25px;
-}
-
-p{
-font-size:19px;
-line-height:32px;
-color:#555;
+.hero p{
+font-size:22px;
+margin-bottom:30px;
 }
 
 .boton{
 display:inline-block;
-margin-top:35px;
-padding:18px 45px;
 background:#25D366;
 color:white;
+padding:18px 40px;
+border-radius:10px;
 text-decoration:none;
 font-size:22px;
-border-radius:50px;
 font-weight:bold;
 }
 
-.boton:hover{
-background:#1bb857;
+.seccion{
+max-width:1200px;
+margin:auto;
+padding:60px 20px;
 }
 
-.footer{
-background:#f3f3f3;
-padding:20px;
+.tarjetas{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.tarjeta{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
 text-align:center;
-font-size:17px;
+}
+
+.tarjeta h3{
+color:#0b6b3b;
+margin-bottom:15px;
+}
+
+footer{
+background:#111;
+color:white;
+padding:30px;
+text-align:center;
+margin-top:40px;
 }
 
 </style>
@@ -92,54 +116,91 @@ font-size:17px;
 
 <body>
 
-<div class="tarjeta">
+<header>
 
-<div class="cabecera">
+<img src="imagen/logo.png">
 
-<h2 style="color:white;">ASOCIACIÓN ORNITOLÓGICA</h2>
+<h1>ASOCIACIÓN ORNITOLÓGICA</h1>
 
-</div>
+<h2>NAVAS DE SAN JUAN</h2>
 
-<div class="contenido">
+</header>
 
-<h1>NAVAS DE SAN JUAN</h1>
+<nav>
 
-<p>
+<a href="#">Inicio</a>
 
-Bienvenido a la
+<a href="tienda2.html">Tienda</a>
 
-<b>Tienda Oficial del Socio.</b>
+<a href="#">Socios</a>
 
-<br><br>
+<a href="#">Contacto</a>
 
-Desde aquí podrás solicitar todo el material para tu aviario de forma rápida y sencilla.
+</nav>
 
-</p>
+<section class="hero">
 
-<a class="boton" href="tienda2.html"
+<div>
 
-🛒 ENTRAR EN LA TIENDA
+<h1>Tienda Oficial del Socio</h1>
+
+<p>Todo el material para tu aviario al mejor precio.</p>
+
+<a href="tienda2.html" class="boton">
+
+ENTRAR EN LA TIENDA
 
 </a>
 
 </div>
 
-<div class="footer">
+</section>
 
-📱 WhatsApp Asociación
+<section class="seccion">
 
-<br>
+<div class="tarjetas">
 
-<b>640 868 527</b>
+<div class="tarjeta">
 
-<br><br>
+<h3>🐦 Jaulas</h3>
 
-Tradición · Respeto · Conservación · Pasión
+<p>Gran variedad de jaulas de cría y concurso.</p>
+
+</div>
+
+<div class="tarjeta">
+
+<h3>🥣 Comederos</h3>
+
+<p>Todos los modelos disponibles.</p>
+
+</div>
+
+<div class="tarjeta">
+
+<h3>💧 Bebederos</h3>
+
+<p>Italianos, automáticos y clásicos.</p>
+
+</div>
+
+<div class="tarjeta">
+
+<h3>🌾 Alimentación</h3>
+
+<p>Semillas, pastas y suplementos.</p>
 
 </div>
 
 </div>
+
+</section>
+
+<footer>
+
+© 2026 Asociación Ornitológica de Navas de San Juan
+
+</footer>
 
 </body>
-
 </html>

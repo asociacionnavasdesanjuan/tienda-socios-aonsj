@@ -75,3 +75,37 @@ function obtenerCarrito(){
     return carrito;
 
 }
+// ===============================
+// PANEL LATERAL DEL CARRITO
+// ===============================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const abrir = document.getElementById("abrirCarrito");
+    const cerrar = document.getElementById("cerrarCarrito");
+    const panel = document.getElementById("panelCarrito");
+    const fondo = document.getElementById("fondoCarrito");
+
+    if (abrir) {
+        abrir.addEventListener("click", function(e){
+            e.preventDefault();
+            panel.classList.add("abierto");
+            fondo.classList.add("activo");
+        });
+    }
+
+    if (cerrar) {
+        cerrar.addEventListener("click", function(){
+            panel.classList.remove("abierto");
+            fondo.classList.remove("activo");
+        });
+    }
+
+    if (fondo) {
+        fondo.addEventListener("click", function(){
+            panel.classList.remove("abierto");
+            fondo.classList.remove("activo");
+        });
+    }
+
+});

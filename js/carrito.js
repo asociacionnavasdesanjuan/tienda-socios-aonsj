@@ -1,202 +1,218 @@
-// ============================================
-// CARRITO OFICIAL AONSJ v1.0
-// ============================================
+// ===============================
+// CARRITO TIENDA OFICIAL DEL SOCIO
+// Asociación Ornitológica
+// ===============================
 
-// Carrito guardado en el navegador
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-// --------------------------------------------
-// Al cargar la página
-// --------------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
+const listaCarrito = document.getElementById("lista-carrito");
+const contador = document.getElementById("contador-carrito");
+const total = document.getElementById("total-carrito");
+const btnWhatsapp = document.getElementById("enviar-whatsapp");
 
-    actualizarContador();
+//--------------------------------
+// Guardar carrito
+//--------------------------------
 
-    iniciarCarrito();
-
-});
-
-// --------------------------------------------
-// Inicializar eventos
-// --------------------------------------------
-function iniciarCarrito(){
-
-    const abrir = document.getElementById("abrirCarrito");
-    const cerrar = document.getElementById("cerrarCarrito");
-    const fondo = document.getElementById("fondoCarrito");
-
-    if(abrir){
-
-        abrir.addEventListener("click", function(e){
-
-            e.preventDefault();
-
-            abrirCarrito();
-
-        });
-
-    }
-
-    if(cerrar){
-
-        cerrar.addEventListener("click", cerrarCarrito);
-
-    }
-
-    if(fondo){
-
-        fondo.addEventListener("click", cerrarCarrito);
-
-    }
-
+function guardarCarrito() {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-// --------------------------------------------
-// Abrir carrito
-// --------------------------------------------
-function abrirCarrito(){
-
-    const panel = document.getElementById("panelCarrito");
-    const fondo = document.getElementById("fondoCarrito");
-
-    if(panel){
-
-        panel.classList.add("abierto");
-
-    }
-
-    if(fondo){
-
-        fondo.classList.add("activo");
-
-    }
-
-    mostrarCarrito();
-
-}
-
-// --------------------------------------------
-// Cerrar carrito
-// --------------------------------------------
-function cerrarCarrito(){
-
-    const panel = document.getElementById("panelCarrito");
-    const fondo = document.getElementById("fondoCarrito");
-
-    if(panel){
-
-        panel.classList.remove("abierto");
-
-    }
-
-    if(fondo){
-
-        fondo.classList.remove("activo");
-
-    }
-
-}
-
-// --------------------------------------------
+//--------------------------------
 // Añadir producto
-// --------------------------------------------
-function agregarAlCarrito(id){
+//--------------------------------
 
-    const producto = carrito.find(p => p.id === id);
+function agregarAlCarrito(producto) {
 
-    if(producto){
+    const existe = carrito.find(p => p.id == producto.id);
 
-        producto.cantidad++;
-
-    }else{
+    if (existe) {
+        existe.cantidad++;
+    } else {
 
         carrito.push({
-
-            id:id,
-
-            cantidad:1
-
+            id: producto.id,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            imagen: producto.imagen,
+            cantidad: 1
         });
 
     }
 
     guardarCarrito();
+    actualizarCarrito();
 
 }
 
-// --------------------------------------------
-// Guardar
-// --------------------------------------------
-function guardarCarrito(){
+//--------------------------------
+// Eliminar producto
+//--------------------------------
 
-    localStorage.setItem(
+function eliminarProducto(id){
 
-        "carrito",
+    carrito = carrito.filter(p => p.id != id);
 
-        JSON.stringify(carrito)
+    guardarCarrito();
 
-    );
-
-    actualizarContador();
+    actualizarCarrito();
 
 }
 
-// --------------------------------------------
-// Contador
-// --------------------------------------------
-function actualizarContador(){
+//--------------------------------
+// Cambiar cantidad
+//--------------------------------
 
-    const contador = document.getElementById("contadorCarrito");
+function cambiarCantidad(id,cambio){
 
-    if(!contador) return;
+    const producto = carrito.find(p=>p.id==id);
 
-    let total=0;
+    if(!producto) return;
 
-    carrito.forEach(item=>{
+    producto.cantidad += cambio;
 
-        total += item.cantidad;
+    if(producto.cantidad<=0){
 
-    });
-
-    contador.textContent=total;
-
-}
-
-// --------------------------------------------
-// Mostrar carrito
-// --------------------------------------------
-function mostrarCarrito(){
-
-    const lista=document.getElementById("listaCarrito");
-
-    if(!lista) return;
-
-    if(carrito.length===0){
-
-        lista.innerHTML="<p>Tu carrito está vacío.</p>";
+        eliminarProducto(id);
 
         return;
 
     }
 
-    let html="";
+    guardarCarrito();
 
-    carrito.forEach(item=>{
+    actualizarCarrito();
 
-        html += `
+}
 
-            <div class="card">
+//--------------------------------
+// Actualizar carrito
+//--------------------------------
 
-                Producto ID: ${item.id}<br>
+function actualizarCarrito(){
 
-                Cantidad: ${item.cantidad}
+    if(!listaCarrito) return;
+
+    listaCarrito.innerHTML="";
+
+    let totalProductos=0;
+
+    let importe=0;
+
+    carrito.forEach(producto=>{
+
+        totalProductos+=producto.cantidad;
+
+        importe+=producto.precio*producto.cantidad;
+
+        listaCarrito.innerHTML+=`
+
+        <div class="item-carrito">
+
+            <img src="${producto.imagen}" class="img-carrito">
+
+            <div class="datos-carrito">
+
+                <h4>${producto.nombre}</h4>
+
+                <p>${producto.precio.toFixed(2)} €</p>
+
+                <div class="cantidad">
+
+                    <button onclick="cambiarCantidad(${producto.id},-1)">−</button>
+
+                    <span>${producto.cantidad}</span>
+
+                    <button onclick="cambiarCantidad(${producto.id},1)">+</button>
+
+                </div>
 
             </div>
+
+            <button class="eliminar" onclick="eliminarProducto(${producto.id})">
+
+                ✖
+
+            </button>
+
+        </div>
 
         `;
 
     });
 
-    lista.innerHTML=html;
+    if(contador){
+
+        contador.textContent=totalProductos;
+
+    }
+
+    if(total){
+
+        total.innerHTML=importe.toFixed(2)+" €";
+
+    }
 
 }
+
+//--------------------------------
+// Vaciar carrito
+//--------------------------------
+
+function vaciarCarrito(){
+
+    carrito=[];
+
+    guardarCarrito();
+
+    actualizarCarrito();
+
+}
+
+//--------------------------------
+// WhatsApp
+//--------------------------------
+
+function enviarWhatsapp(){
+
+    if(carrito.length==0){
+
+        alert("El carrito está vacío");
+
+        return;
+
+    }
+
+    let mensaje="*PEDIDO TIENDA OFICIAL DEL SOCIO*%0A%0A";
+
+    carrito.forEach(producto=>{
+
+        mensaje+=`${producto.nombre}%0A`;
+
+        mensaje+=`Cantidad: ${producto.cantidad}%0A`;
+
+        mensaje+=`Precio: ${(producto.precio*producto.cantidad).toFixed(2)} €%0A%0A`;
+
+    });
+
+    const totalPedido=carrito.reduce((a,b)=>a+b.precio*b.cantidad,0);
+
+    mensaje+="*TOTAL:* "+totalPedido.toFixed(2)+" €";
+
+    window.open(
+
+        "https://wa.me/34640868527?text="+mensaje,
+
+        "_blank"
+
+    );
+
+}
+
+if(btnWhatsapp){
+
+    btnWhatsapp.addEventListener("click",enviarWhatsapp);
+
+}
+
+actualizarCarrito();

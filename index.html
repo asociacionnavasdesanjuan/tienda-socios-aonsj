@@ -1,92 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Asociación Ornitológica de Navas de San Juan</title>
-
+<meta name="description" content="Tienda Oficial del Socio - Asociación Ornitológica de Navas de San Juan">
+<title>Tienda Oficial del Socio | Asociación Ornitológica de Navas de San Juan</title>
 <link rel="stylesheet" href="css/style.css">
-
+<link rel="stylesheet" href="css/responsive.css">
 </head>
-
 <body>
 
-<header class="cabecera">
+<header class="header">
+  <div class="logo">
+    <img src="img/logo.png" alt="Logo Asociación">
+  </div>
 
-<img src="imagen/logo.png" class="logo" alt="Logo">
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="tienda.html">Tienda</a></li>
+      <li><a href="#categorias">Categorías</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
 
-<h1>ASOCIACIÓN ORNITOLÓGICA<br>NAVAS DE SAN JUAN</h1>
-
-<p>
-Tradición · Respeto · Conservación · Pasión
-</p>
-
-<a href="tienda.html" class="boton-principal">
-🛒 ENTRAR EN LA TIENDA
-</a>
-
+  <div class="acciones">
+    <input type="search" placeholder="Buscar productos...">
+    <a href="tienda.html" class="carrito">🛒 <span id="contadorCarrito">0</span></a>
+  </div>
 </header>
 
-<section class="banner">
+<section class="hero">
+  <div class="hero-contenido">
+    <h1>Tienda Oficial del Socio</h1>
+    <p>Productos oficiales para criadores y aficionados a la ornitología.</p>
+    <a href="tienda.html" class="btn">Entrar en la tienda</a>
+  </div>
+</section>
 
-<h2>
-Todo lo que tu aviario necesita
-</h2>
-
-<p>
-Jaulas · Alimentación · Vitaminas · Accesorios · Material de Cría
-</p>
-
+<section id="categorias" class="categorias">
+<h2>Categorías destacadas</h2>
+<div class="grid">
+<div class="card">🐤<h3>Anillas</h3></div>
+<div class="card">🪺<h3>Jaulas</h3></div>
+<div class="card">🥣<h3>Comederos</h3></div>
+<div class="card">💧<h3>Bebederos</h3></div>
+<div class="card">🌾<h3>Alimentación</h3></div>
+<div class="card">🧼<h3>Higiene</h3></div>
+<div class="card">🎒<h3>Accesorios</h3></div>
+<div class="card">👕<h3>Ropa Asociación</h3></div>
+</div>
 </section>
 
 <section class="destacados">
-
-<h2>⭐ Productos destacados</h2>
-
-<div class="tarjetas">
-
-<div class="tarjeta">
-
-<img src="https://placehold.co/400x300?text=JAULA">
-
-<h3>Jaulas</h3>
-
-<a href="tienda.html">Ver productos</a>
-
+<h2>Productos destacados</h2>
+<div id="productosDestacados" class="grid">
+<p>Los productos se cargarán automáticamente desde <strong>productos.json</strong>.</p>
 </div>
+</section>
 
-<div class="tarjeta">
-
-<img src="https://placehold.co/400x300?text=ALIMENTACION">
-
-<h3>Alimentación</h3>
-
-<a href="tienda.html">Ver productos</a>
-
+<section class="ventajas">
+<h2>¿Por qué comprar con nosotros?</h2>
+<div class="grid">
+<div class="card"><h3>🚚 Envíos</h3><p>Gestión rápida de pedidos.</p></div>
+<div class="card"><h3>🛡 Calidad</h3><p>Productos seleccionados para el criador.</p></div>
+<div class="card"><h3>💬 WhatsApp</h3><p>Pedidos directos desde el carrito.</p></div>
 </div>
+</section>
 
-<div class="tarjeta">
-
-<img src="https://placehold.co/400x300?text=VITAMINAS">
-
-<h3>Vitaminas</h3>
-
-<a href="tienda.html">Ver productos</a>
-
-</div>
-
-</div>
-
+<section class="asociacion">
+<h2>Asociación Ornitológica de Navas de San Juan</h2>
+<p>Esta tienda oficial nace para ofrecer a nuestros socios y aficionados una forma sencilla de adquirir productos relacionados con la ornitología, apoyando al mismo tiempo el crecimiento de nuestra asociación.</p>
 </section>
 
 <footer>
-
-© Asociación Ornitológica de Navas de San Juan
-
+<img src="img/logo.png" alt="Logo" style="max-width:90px;">
+<p>Asociación Ornitológica de Navas de San Juan</p>
+<p>Email: asociacionornitologicanavasdesanjuan@hotmail.com</p>
+<p>&copy; 2026 Todos los derechos reservados.</p>
 </footer>
 
-</body>
+<script src="js/productos.js"></script>
+<script src="js/carrito.js"></script>
+<script src="js/app.js"></script>
 
+</body>
 </html>

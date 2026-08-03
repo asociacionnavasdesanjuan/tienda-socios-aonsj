@@ -1,34 +1,44 @@
-[
-  {
-    "id": 1,
-    "nombre": "Jaula de Cría 60 cm",
-    "categoria": "Jaulas",
-    "precio": 49.95,
-    "imagen": "img/productos/jaula1.jpg",
-    "descripcion": "Jaula de cría con separador y bandeja extraíble."
-  },
-  {
-    "id": 2,
-    "nombre": "Comedero Exterior",
-    "categoria": "Comederos",
-    "precio": 2.50,
-    "imagen": "img/productos/comedero.jpg",
-    "descripcion": "Comedero transparente de gran capacidad."
-  },
-  {
-    "id": 3,
-    "nombre": "Bebedero Tubular",
-    "categoria": "Bebederos",
-    "precio": 1.80,
-    "imagen": "img/productos/bebedero.jpg",
-    "descripcion": "Bebedero de plástico para jaulas de concurso y cría."
-  },
-  {
-    "id": 4,
-    "nombre": "Pasta de Cría",
-    "categoria": "Alimentación",
-    "precio": 8.95,
-    "imagen": "img/productos/pasta.jpg",
-    "descripcion": "Pasta de cría de alta calidad para canarios y fauna europea."
-  }
-]
+document.addEventListener("DOMContentLoaded", () => {
+
+    const contenedor = document.getElementById("contenedorProductos");
+
+    if (!contenedor) return;
+
+    fetch("data/productos.json")
+        .then(response => response.json())
+        .then(productos => {
+
+            productos.forEach(producto => {
+
+                contenedor.innerHTML += `
+
+                    <div class="card producto">
+
+                        <img
+                            src="${producto.imagen}"
+                            alt="${producto.nombre}"
+                            style="width:100%;height:220px;object-fit:cover;border-radius:10px;">
+
+                        <h3>${producto.nombre}</h3>
+
+                        <p>${producto.descripcion}</p>
+
+                        <h2>${producto.precio.toFixed(2)} €</h2>
+
+                        <button
+                            class="btn"
+                            onclick="agregarAlCarrito(${producto.id})">
+
+                            Añadir al carrito
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            });
+
+        });
+
+});

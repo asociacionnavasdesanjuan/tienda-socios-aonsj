@@ -17,6 +17,46 @@ function añadirProducto(boton, nombre, precio){
 
     actualizarCarrito();
 
+function actualizarCarrito(){
+
+    let resumen = {};
+    let total = 0;
+
+    carrito.forEach(function(producto){
+
+        if(!resumen[producto.nombre]){
+            resumen[producto.nombre]={
+                cantidad:0,
+                precio:producto.precio
+            };
+        }
+
+        resumen[producto.nombre].cantidad++;
+        total += producto.precio;
+
+    });
+
+    let texto="";
+
+    for(let nombre in resumen){
+
+        let cantidad=resumen[nombre].cantidad;
+        let precio=resumen[nombre].precio*cantidad;
+
+        texto += "• " + nombre +
+                 " x" + cantidad +
+                 " - " + precio.toFixed(2) +
+                 " €<br>";
+
+    }
+
+    if(carrito.length==0){
+        texto="Todavía no hay productos.";
+    }
+
+    document.getElementById("productos").innerHTML=texto;
+    document.getElementById("total").innerHTML="<strong>Total: "+total.toFixed(2)+" €</strong>";
+
 }function añadirProducto(nombre, precio){
 
     carrito.push({

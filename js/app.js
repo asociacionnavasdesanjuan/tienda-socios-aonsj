@@ -68,3 +68,26 @@ function enviarWhatsApp(){
     window.open("https://wa.me/34640868527?text="+mensaje);
 
 }
+document.querySelectorAll(".cantidad").forEach(function(caja){
+
+    const menos = caja.children[0];
+    const numero = caja.children[1];
+    const mas = caja.children[2];
+
+    mas.onclick = function(){
+
+        numero.value = parseInt(numero.value) + 1;
+
+    }
+
+    menos.onclick = function(){
+
+        if(parseInt(numero.value) > 1){
+
+            numero.value = parseInt(numero.value) - 1;
+
+        }
+
+    }
+
+});

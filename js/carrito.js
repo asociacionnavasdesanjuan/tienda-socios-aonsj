@@ -1,25 +1,54 @@
-// ===============================
-// CARRITO AONSJ V1.0
-// ===============================
+// =====================================
+// CARRITO AONSJ
+// =====================================
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-actualizarContador();
+// --------------------
+// Actualizar contador
+// --------------------
+function actualizarContador() {
 
+    const contador = document.getElementById("contadorCarrito");
+
+    if (!contador) return;
+
+    let total = 0;
+
+    carrito.forEach(item => {
+        total += item.cantidad;
+    });
+
+    contador.textContent = total;
+}
+
+// --------------------
+// Guardar carrito
+// --------------------
+function guardarCarrito() {
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    actualizarContador();
+
+}
+
+// --------------------
 // Añadir producto
-function agregarAlCarrito(id){
+// --------------------
+function agregarAlCarrito(id) {
 
-    const existe = carrito.find(p => p.id === id);
+    const existe = carrito.find(item => item.id === id);
 
-    if(existe){
+    if (existe) {
 
         existe.cantidad++;
 
-    }else{
+    } else {
 
         carrito.push({
-            id:id,
-            cantidad:1
+            id: id,
+            cantidad: 1
         });
 
     }
@@ -28,84 +57,65 @@ function agregarAlCarrito(id){
 
 }
 
-// Guardar carrito
-function guardarCarrito(){
-
-    localStorage.setItem(
-        "carrito",
-        JSON.stringify(carrito)
-    );
-
-    actualizarContador();
-
-}
-
-// Actualizar contador
-function actualizarContador(){
-
-    const contador =
-        document.getElementById("contadorCarrito");
-
-    if(!contador) return;
-
-    let total = 0;
-
-    carrito.forEach(producto=>{
-
-        total += producto.cantidad;
-
-    });
-
-    contador.textContent = total;
-
-}
-
+// --------------------
 // Vaciar carrito
-function vaciarCarrito(){
+// --------------------
+function vaciarCarrito() {
 
-    carrito=[];
+    carrito = [];
 
     guardarCarrito();
 
 }
 
-// Obtener carrito
-function obtenerCarrito(){
-
-    return carrito;
-
-}
-// ===============================
-// PANEL LATERAL DEL CARRITO
-// ===============================
-
+// --------------------
+// Abrir y cerrar panel
+// --------------------
 document.addEventListener("DOMContentLoaded", () => {
+
+    actualizarContador();
 
     const abrir = document.getElementById("abrirCarrito");
     const cerrar = document.getElementById("cerrarCarrito");
     const panel = document.getElementById("panelCarrito");
     const fondo = document.getElementById("fondoCarrito");
 
-    if (abrir) {
-        abrir.addEventListener("click", function(e){
+    if (abrir && panel && fondo) {
+
+        abrir.addEventListener("click", function (e) {
+
             e.preventDefault();
+
             panel.classList.add("abierto");
+
             fondo.classList.add("activo");
+
         });
+
     }
 
-    if (cerrar) {
-        cerrar.addEventListener("click", function(){
+    if (cerrar && panel && fondo) {
+
+        cerrar.addEventListener("click", function () {
+
             panel.classList.remove("abierto");
+
             fondo.classList.remove("activo");
+
         });
+
     }
 
-    if (fondo) {
-        fondo.addEventListener("click", function(){
+    if (fondo && panel) {
+
+        fondo.addEventListener("click", function () {
+
             panel.classList.remove("abierto");
+
             fondo.classList.remove("activo");
+
         });
+
     }
 
 });

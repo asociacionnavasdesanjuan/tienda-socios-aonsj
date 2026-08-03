@@ -1,44 +1,56 @@
-document.addEventListener("DOMContentLoaded", () => {
+// ===============================
+// CARRITO DE LA TIENDA AONSJ
+// ===============================
 
-    const contenedor = document.getElementById("contenedorProductos");
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-    if (!contenedor) return;
+actualizarContador();
 
-    fetch("data/productos.json")
-        .then(response => response.json())
-        .then(productos => {
+function agregarAlCarrito(id){
 
-            productos.forEach(producto => {
+    const producto = carrito.find(p => p.id === id);
 
-                contenedor.innerHTML += `
+    if(producto){
 
-                    <div class="card producto">
+        producto.cantidad++;
 
-                        <img
-                            src="${producto.imagen}"
-                            alt="${producto.nombre}"
-                            style="width:100%;height:220px;object-fit:cover;border-radius:10px;">
+    }else{
 
-                        <h3>${producto.nombre}</h3>
-
-                        <p>${producto.descripcion}</p>
-
-                        <h2>${producto.precio.toFixed(2)} €</h2>
-
-                        <button
-                            class="btn"
-                            onclick="agregarAlCarrito(${producto.id})">
-
-                            Añadir al carrito
-
-                        </button>
-
-                    </div>
-
-                `;
-
-            });
-
+        carrito.push({
+            id:id,
+            cantidad:1
         });
 
-});
+    }
+
+    guardarCarrito();
+
+    alert("Producto añadido al carrito.");
+
+}
+
+function guardarCarrito(){
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    actualizarContador();
+
+}
+
+function actualizarContador(){
+
+    const contador = document.getElementById("contadorCarrito");
+
+    if(!contador) return;
+
+    let total = 0;
+
+    carrito.forEach(item =>{
+
+        total += item.cantidad;
+
+    });
+
+    contador.textContent = total;
+
+}

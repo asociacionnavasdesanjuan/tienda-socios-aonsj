@@ -5,10 +5,10 @@
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-const listaCarrito = document.getElementById("lista-carrito");
-const contador = document.getElementById("contador-carrito");
-const total = document.getElementById("total-carrito");
-const btnWhatsapp = document.getElementById("enviar-whatsapp");
+const listaCarrito = document.getElementById("listaCarrito");
+const contador = document.getElementById("contadorCarrito");
+const total = document.getElementById("totalCarrito");
+const btnWhatsapp = document.getElementById("btnWhatsapp");
 
 //--------------------------------
 // Guardar carrito

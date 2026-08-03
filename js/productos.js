@@ -1,37 +1,34 @@
-const productos = [
+[
   {
-    nombre: "Jaula de Cría",
-    precio: 39.95,
-    imagen: "https://via.placeholder.com/400x300?text=JAULA"
+    "id": 1,
+    "nombre": "Jaula de Cría 60 cm",
+    "categoria": "Jaulas",
+    "precio": 49.95,
+    "imagen": "img/productos/jaula1.jpg",
+    "descripcion": "Jaula de cría con separador y bandeja extraíble."
   },
   {
-    nombre: "Comedero",
-    precio: 2.50,
-    imagen: "https://via.placeholder.com/400x300?text=COMEDERO"
+    "id": 2,
+    "nombre": "Comedero Exterior",
+    "categoria": "Comederos",
+    "precio": 2.50,
+    "imagen": "img/productos/comedero.jpg",
+    "descripcion": "Comedero transparente de gran capacidad."
   },
   {
-    nombre: "Bebedero",
-    precio: 1.20,
-    imagen: "https://via.placeholder.com/400x300?text=BEBEDERO"
+    "id": 3,
+    "nombre": "Bebedero Tubular",
+    "categoria": "Bebederos",
+    "precio": 1.80,
+    "imagen": "img/productos/bebedero.jpg",
+    "descripcion": "Bebedero de plástico para jaulas de concurso y cría."
   },
   {
-    nombre: "Pasta de Cría",
-    precio: 12.95,
-    imagen: "https://via.placeholder.com/400x300?text=PASTA"
+    "id": 4,
+    "nombre": "Pasta de Cría",
+    "categoria": "Alimentación",
+    "precio": 8.95,
+    "imagen": "img/productos/pasta.jpg",
+    "descripcion": "Pasta de cría de alta calidad para canarios y fauna europea."
   }
-];
-
-const contenedor = document.getElementById("productos");
-
-if (contenedor) {
-  productos.forEach(producto => {
-    contenedor.innerHTML += `
-      <div class="tarjeta">
-        <img src="${producto.imagen}" alt="${producto.nombre}">
-        <h3>${producto.nombre}</h3>
-        <p><strong>${producto.precio.toFixed(2)} €</strong></p>
-        <a href="tienda.html">Ver producto</a>
-      </div>
-    `;
-  });
-}
+]

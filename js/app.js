@@ -1,32 +1,46 @@
-cont.innerHTML += `
-<div class="card">
+// ===============================
+// APP PRINCIPAL - TIENDA AONSJ
+// ===============================
 
-<img src="${p.img}">
+document.addEventListener("DOMContentLoaded", () => {
 
-<div style="background:#e53935;color:white;padding:8px;font-weight:bold;">
-🔥 OFERTA
-</div>
+    iniciarBuscador();
 
-<h3>${p.nombre}</h3>
+});
 
-<div style="color:#f7b500;font-size:20px;">
-★★★★★
-</div>
+function iniciarBuscador(){
 
-<p style="font-size:28px;font-weight:bold;color:#0b6b3b;">
-${p.precio.toFixed(2)} €
-</p>
+    const buscador = document.getElementById("buscador");
 
-<p style="color:green;font-weight:bold;">
-✅ En stock
-</p>
+    if(!buscador) return;
 
-<p style="color:#666;">
-🚚 Entrega 24/48 horas
-</p>
+    buscador.addEventListener("keyup", function(){
 
-<button onclick="add(${i})">
-🛒 Añadir al carrito
-</button>
+        const texto = this.value.toLowerCase();
 
-</div>`;
+        const productos = document.querySelectorAll(".producto");
+
+        productos.forEach(producto =>{
+
+            const nombre = producto.querySelector("h3").textContent.toLowerCase();
+
+            const descripcion = producto.querySelector("p").textContent.toLowerCase();
+
+            if(
+                nombre.includes(texto) ||
+                descripcion.includes(texto)
+            ){
+
+                producto.style.display="block";
+
+            }else{
+
+                producto.style.display="none";
+
+            }
+
+        });
+
+    });
+
+}

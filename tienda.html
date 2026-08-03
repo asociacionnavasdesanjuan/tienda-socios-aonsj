@@ -10,7 +10,43 @@
 </head>
 
 <body>
+<!-- FONDO OSCURO -->
+<div id="fondoCarrito" class="fondo-carrito"></div>
 
+<!-- PANEL DEL CARRITO -->
+<div id="panelCarrito" class="panel-carrito">
+
+    <div class="cabecera-carrito">
+
+        <h2>🛒 Mi carrito</h2>
+
+        <button id="cerrarCarrito">✕</button>
+
+    </div>
+
+    <div id="listaCarrito">
+
+        <p>Tu carrito está vacío.</p>
+
+    </div>
+
+    <div class="pie-carrito">
+
+        <h3>Total:
+            <span id="totalCarrito">
+                0,00 €
+            </span>
+        </h3>
+
+        <button id="btnWhatsapp" class="btn">
+
+            Finalizar por WhatsApp
+
+        </button>
+
+    </div>
+
+</div>
 <header class="header">
 
     <div class="logo">
@@ -34,7 +70,7 @@
             placeholder="Buscar productos..."
         >
 
-        <a href="#" class="carrito">
+      <a href="#" class="carrito" id="abrirCarrito">
             🛒 <span id="contadorCarrito">0</span>
         </a>
 

@@ -1,121 +1,202 @@
-// =====================================
-// CARRITO AONSJ
-// =====================================
+// ============================================
+// CARRITO OFICIAL AONSJ v1.0
+// ============================================
 
+// Carrito guardado en el navegador
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-// --------------------
-// Actualizar contador
-// --------------------
-function actualizarContador() {
-
-    const contador = document.getElementById("contadorCarrito");
-
-    if (!contador) return;
-
-    let total = 0;
-
-    carrito.forEach(item => {
-        total += item.cantidad;
-    });
-
-    contador.textContent = total;
-}
-
-// --------------------
-// Guardar carrito
-// --------------------
-function guardarCarrito() {
-
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-
-    actualizarContador();
-
-}
-
-// --------------------
-// Añadir producto
-// --------------------
-function agregarAlCarrito(id) {
-
-    const existe = carrito.find(item => item.id === id);
-
-    if (existe) {
-
-        existe.cantidad++;
-
-    } else {
-
-        carrito.push({
-            id: id,
-            cantidad: 1
-        });
-
-    }
-
-    guardarCarrito();
-
-}
-
-// --------------------
-// Vaciar carrito
-// --------------------
-function vaciarCarrito() {
-
-    carrito = [];
-
-    guardarCarrito();
-
-}
-
-// --------------------
-// Abrir y cerrar panel
-// --------------------
+// --------------------------------------------
+// Al cargar la página
+// --------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
 
     actualizarContador();
 
+    iniciarCarrito();
+
+});
+
+// --------------------------------------------
+// Inicializar eventos
+// --------------------------------------------
+function iniciarCarrito(){
+
     const abrir = document.getElementById("abrirCarrito");
     const cerrar = document.getElementById("cerrarCarrito");
-    const panel = document.getElementById("panelCarrito");
     const fondo = document.getElementById("fondoCarrito");
 
-    if (abrir && panel && fondo) {
+    if(abrir){
 
-        abrir.addEventListener("click", function (e) {
+        abrir.addEventListener("click", function(e){
 
             e.preventDefault();
 
-            panel.classList.add("abierto");
-
-            fondo.classList.add("activo");
+            abrirCarrito();
 
         });
 
     }
 
-    if (cerrar && panel && fondo) {
+    if(cerrar){
 
-        cerrar.addEventListener("click", function () {
+        cerrar.addEventListener("click", cerrarCarrito);
 
-            panel.classList.remove("abierto");
+    }
 
-            fondo.classList.remove("activo");
+    if(fondo){
+
+        fondo.addEventListener("click", cerrarCarrito);
+
+    }
+
+}
+
+// --------------------------------------------
+// Abrir carrito
+// --------------------------------------------
+function abrirCarrito(){
+
+    const panel = document.getElementById("panelCarrito");
+    const fondo = document.getElementById("fondoCarrito");
+
+    if(panel){
+
+        panel.classList.add("abierto");
+
+    }
+
+    if(fondo){
+
+        fondo.classList.add("activo");
+
+    }
+
+    mostrarCarrito();
+
+}
+
+// --------------------------------------------
+// Cerrar carrito
+// --------------------------------------------
+function cerrarCarrito(){
+
+    const panel = document.getElementById("panelCarrito");
+    const fondo = document.getElementById("fondoCarrito");
+
+    if(panel){
+
+        panel.classList.remove("abierto");
+
+    }
+
+    if(fondo){
+
+        fondo.classList.remove("activo");
+
+    }
+
+}
+
+// --------------------------------------------
+// Añadir producto
+// --------------------------------------------
+function agregarAlCarrito(id){
+
+    const producto = carrito.find(p => p.id === id);
+
+    if(producto){
+
+        producto.cantidad++;
+
+    }else{
+
+        carrito.push({
+
+            id:id,
+
+            cantidad:1
 
         });
 
     }
 
-    if (fondo && panel) {
+    guardarCarrito();
 
-        fondo.addEventListener("click", function () {
+}
 
-            panel.classList.remove("abierto");
+// --------------------------------------------
+// Guardar
+// --------------------------------------------
+function guardarCarrito(){
 
-            fondo.classList.remove("activo");
+    localStorage.setItem(
 
-        });
+        "carrito",
+
+        JSON.stringify(carrito)
+
+    );
+
+    actualizarContador();
+
+}
+
+// --------------------------------------------
+// Contador
+// --------------------------------------------
+function actualizarContador(){
+
+    const contador = document.getElementById("contadorCarrito");
+
+    if(!contador) return;
+
+    let total=0;
+
+    carrito.forEach(item=>{
+
+        total += item.cantidad;
+
+    });
+
+    contador.textContent=total;
+
+}
+
+// --------------------------------------------
+// Mostrar carrito
+// --------------------------------------------
+function mostrarCarrito(){
+
+    const lista=document.getElementById("listaCarrito");
+
+    if(!lista) return;
+
+    if(carrito.length===0){
+
+        lista.innerHTML="<p>Tu carrito está vacío.</p>";
+
+        return;
 
     }
 
-});
+    let html="";
+
+    carrito.forEach(item=>{
+
+        html += `
+
+            <div class="card">
+
+                Producto ID: ${item.id}<br>
+
+                Cantidad: ${item.cantidad}
+
+            </div>
+
+        `;
+
+    });
+
+    lista.innerHTML=html;
+
+}

@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h2>${producto.precio.toFixed(2)} €</h2>
 
                         <button class="btn"
-                                onclick="agregarAlCarrito(${producto.id})">
+                                 onclick='agregarAlCarrito(${JSON.stringify(producto)})'>
                             Añadir al carrito
                         </button>
 

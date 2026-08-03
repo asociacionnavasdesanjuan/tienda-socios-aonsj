@@ -142,7 +142,32 @@ document.querySelectorAll(".cantidad").forEach(function(caja){
         if(parseInt(numero.value) > 1){
 
             numero.value = parseInt(numero.value) - 1;
+const botonesCategorias = document.querySelectorAll(".categorias button");
+const productos = document.querySelectorAll(".producto");
 
+botonesCategorias.forEach(function(boton){
+
+    boton.addEventListener("click", function(){
+
+        let categoria = boton.textContent.toLowerCase();
+
+        productos.forEach(function(producto){
+
+            if(categoria.includes("jaulas")){
+
+                if(producto.dataset.categoria=="jaulas"){
+                    producto.style.display="block";
+                }else{
+                    producto.style.display="none";
+                }
+
+            }
+
+        });
+
+    });
+
+});
         }
 
     }

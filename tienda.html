@@ -1,43 +1,108 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tienda del Socio</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda | Asociación Ornitológica de Navas de San Juan</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
+
 <body>
-<header>
-<h1>🦜 Tienda Oficial del Socio</h1>
-<p>Asociación Ornitológica de Navas de San Juan</p>
+
+<header class="header">
+
+    <div class="logo">
+        <a href="index.html">
+            <img src="img/logo.png" alt="Logo Asociación">
+        </a>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tienda.html">Tienda</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="acciones">
+        <input
+            type="text"
+            id="buscador"
+            placeholder="Buscar productos..."
+        >
+
+        <a href="#" class="carrito">
+            🛒 <span id="contadorCarrito">0</span>
+        </a>
+
+    </div>
+
 </header>
 
+<section class="hero">
 
-<nav class="menu">
+    <div class="hero-contenido">
 
-<a href="#">🏠 Inicio</a>
-<a href="#">🦜 Jaulas</a>
-<a href="#">🥣 Comederos</a>
-<a href="#">💧 Bebederos</a>
-<a href="#">🌾 Semillas</a>
-<a href="#">🥚 Pasta de cría</a>
-<a href="#">💊 Vitaminas</a>
-<a href="#">🪹 Nidos</a>
-<a href="#">🔧 Accesorios</a>
+        <h1>Nuestra Tienda</h1>
 
-</nav>
+        <p>
+            Productos oficiales para socios y aficionados a la ornitología.
+        </p>
 
-<section id="productos" class="tarjetas"></section>
+    </div>
 
+</section>
 
-<div class="carrito">
-<h2>🛒 Carrito</h2>
-<div id="lista">Todavía no hay productos.</div>
-<p id="total">Total: 0,00 €</p>
-<button onclick="enviar()">Enviar por WhatsApp</button>
-</div>
+<section>
+
+    <h2>Categorías</h2>
+
+    <div class="grid">
+
+        <div class="card">Anillas</div>
+        <div class="card">Jaulas</div>
+        <div class="card">Comederos</div>
+        <div class="card">Bebederos</div>
+        <div class="card">Alimentación</div>
+        <div class="card">Accesorios</div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h2>Productos</h2>
+
+    <div
+        id="contenedorProductos"
+        class="grid">
+
+        <!-- Aquí aparecerán automáticamente los productos -->
+
+    </div>
+
+</section>
+
+<footer>
+
+    <img
+        src="img/logo.png"
+        alt="Logo"
+        style="max-width:90px;">
+
+    <p>
+        Asociación Ornitológica de Navas de San Juan
+    </p>
+
+</footer>
 
 <script src="js/productos.js"></script>
+<script src="js/carrito.js"></script>
 <script src="js/app.js"></script>
+
 </body>
 </html>

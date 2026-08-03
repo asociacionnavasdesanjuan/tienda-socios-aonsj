@@ -1,175 +1,24 @@
-let carrito = [];
-
-function añadirProducto(boton, nombre, precio){
-
-    let cantidad = parseInt(
-        boton.parentElement.querySelector("input").value
-    );
-
-    for(let i = 0; i < cantidad; i++){
-
-        carrito.push({
-            nombre:nombre,
-            precio:precio
-        });
-
-    }
-
-    actualizarCarrito();
-
-function actualizarCarrito(){
-
-    let resumen = {};
-    let total = 0;
-
-    carrito.forEach(function(producto){
-
-        if(!resumen[producto.nombre]){
-            resumen[producto.nombre]={
-                cantidad:0,
-                precio:producto.precio
-            };
-        }
-
-        resumen[producto.nombre].cantidad++;
-        total += producto.precio;
-
-    });
-
-    let texto="";
-
-    for(let nombre in resumen){
-
-        let cantidad=resumen[nombre].cantidad;
-        let precio=resumen[nombre].precio*cantidad;
-
-        texto += "• " + nombre +
-                 " x" + cantidad +
-                 " - " + precio.toFixed(2) +
-                 " €<br>";
-
-    }
-
-    if(carrito.length==0){
-        texto="Todavía no hay productos.";
-    }
-
-    document.getElementById("productos").innerHTML=texto;
-    document.getElementById("total").innerHTML="<strong>Total: "+total.toFixed(2)+" €</strong>";
-
-}function añadirProducto(nombre, precio){
-
-    carrito.push({
-        nombre:nombre,
-        precio:precio
-    });
-
-    actualizarCarrito();
-
-}
-
-function actualizarCarrito(){
-
-    let texto="";
-
-    let total=0;
-
-    carrito.forEach(function(producto){
-
-        texto += "• " + producto.nombre + " - " + producto.precio.toFixed(2) + " €<br>";
-
-        total += producto.precio;
-
-    });
-
-    if(carrito.length==0){
-
-        texto="Todavía no hay productos.";
-
-    }
-
-    document.getElementById("productos").innerHTML=texto;
-
-    document.getElementById("total").innerHTML="<strong>Total: "+total.toFixed(2)+" €</strong>";
-
-}
-
-function enviarWhatsApp(){
-
-    if(carrito.length==0){
-
-        alert("El carrito está vacío");
-
-        return;
-
-    }
-
-    let mensaje="*Pedido Asociación Ornitológica de Navas de San Juan*%0A%0A";
-
-    carrito.forEach(function(producto){
-
-        mensaje += "• "+producto.nombre+" - "+producto.precio.toFixed(2)+" €%0A";
-
-    });
-
-    let total=0;
-
-    carrito.forEach(function(producto){
-
-        total += producto.precio;
-
-    });
-
-    mensaje += "%0ATotal: "+total.toFixed(2)+" €";
-
-    window.open("https://wa.me/34640868527?text="+mensaje);
-
-}
-document.querySelectorAll(".cantidad").forEach(function(caja){
-
-    const menos = caja.children[0];
-    const numero = caja.children[1];
-    const mas = caja.children[2];
-
-    mas.onclick = function(){
-
-        numero.value = parseInt(numero.value) + 1;
-
-    }
-
-    menos.onclick = function(){
-
-        if(parseInt(numero.value) > 1){
-
-            numero.value = parseInt(numero.value) - 1;
-const botonesCategorias = document.querySelectorAll(".categorias button");
-const productos = document.querySelectorAll(".producto");
-
-botonesCategorias.forEach(function(boton){
-
-    boton.addEventListener("click", function(){
-
-        let categoria = boton.textContent.toLowerCase();
-
-        productos.forEach(function(producto){
-
-            if(categoria.includes("jaulas")){
-
-                if(producto.dataset.categoria=="jaulas"){
-                    producto.style.display="block";
-                }else{
-                    producto.style.display="none";
-                }
-
-            }
-
-        });
-
-    });
-
+let carrito=[];
+const cont=document.getElementById('productos');
+productos.forEach((p,i)=>{
+cont.innerHTML+=`<div class="card">
+<img src="${p.img}">
+<h3>${p.nombre}</h3>
+<p>${p.precio.toFixed(2)} €</p>
+<button onclick="add(${i})">Añadir</button>
+</div>`;
 });
-        }
-
-    }
-
-});
+function add(i){carrito.push(productos[i]);refrescar();}
+function refrescar(){
+ let html="",t=0;
+ if(!carrito.length){document.getElementById("lista").innerHTML="Todavía no hay productos.";document.getElementById("total").textContent="Total: 0,00 €";return;}
+ carrito.forEach(p=>{html+="• "+p.nombre+"<br>";t+=p.precio;});
+ document.getElementById("lista").innerHTML=html;
+ document.getElementById("total").textContent="Total: "+t.toFixed(2)+" €";
+}
+function enviar(){
+ if(!carrito.length)return alert("Carrito vacío");
+ let txt="Pedido:%0A";
+ carrito.forEach(p=>txt+="• "+p.nombre+"%0A");
+ window.open("https://wa.me/34640868527?text="+txt);
+}

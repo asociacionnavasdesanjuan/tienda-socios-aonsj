@@ -1,56 +1,49 @@
-// ===============================
-// CARRITO DE LA TIENDA AONSJ
-// ===============================
+// =====================================
+// PRODUCTOS AONSJ
+// =====================================
 
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+document.addEventListener("DOMContentLoaded", () => {
 
-actualizarContador();
+    const contenedor = document.getElementById("contenedorProductos");
 
-function agregarAlCarrito(id){
+    if (!contenedor) return;
 
-    const producto = carrito.find(p => p.id === id);
+    fetch("data/productos.json")
+        .then(response => response.json())
+        .then(productos => {
 
-    if(producto){
+            contenedor.innerHTML = "";
 
-        producto.cantidad++;
+            productos.forEach(producto => {
 
-    }else{
+                contenedor.innerHTML += `
+                    <div class="card producto">
 
-        carrito.push({
-            id:id,
-            cantidad:1
+                        <img src="${producto.imagen}"
+                             alt="${producto.nombre}"
+                             style="width:100%;height:220px;object-fit:cover;border-radius:10px;">
+
+                        <h3>${producto.nombre}</h3>
+
+                        <p>${producto.descripcion}</p>
+
+                        <h2>${producto.precio.toFixed(2)} €</h2>
+
+                        <button class="btn"
+                                onclick="agregarAlCarrito(${producto.id})">
+                            Añadir al carrito
+                        </button>
+
+                    </div>
+                `;
+
+            });
+
+        })
+        .catch(error => {
+
+            console.error("Error cargando productos:", error);
+
         });
 
-    }
-
-    guardarCarrito();
-
-    alert("Producto añadido al carrito.");
-
-}
-
-function guardarCarrito(){
-
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-
-    actualizarContador();
-
-}
-
-function actualizarContador(){
-
-    const contador = document.getElementById("contadorCarrito");
-
-    if(!contador) return;
-
-    let total = 0;
-
-    carrito.forEach(item =>{
-
-        total += item.cantidad;
-
-    });
-
-    contador.textContent = total;
-
-}
+});

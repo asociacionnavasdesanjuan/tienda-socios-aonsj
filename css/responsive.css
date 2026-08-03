@@ -1,0 +1,120 @@
+/* responsive.css */
+
+@media (max-width: 992px) {
+
+.header{
+    flex-wrap: wrap;
+    gap:15px;
+    padding:15px 20px;
+}
+
+nav{
+    width:100%;
+}
+
+nav ul{
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.acciones{
+    width:100%;
+    justify-content:center;
+}
+
+.acciones input{
+    width:100%;
+    max-width:350px;
+}
+
+.hero h1{
+    font-size:2.4rem;
+}
+
+.hero p{
+    font-size:1rem;
+}
+
+section{
+    padding:60px 6%;
+}
+
+}
+
+@media (max-width:768px){
+
+.logo img{
+    height:55px;
+}
+
+.header{
+    flex-direction:column;
+    align-items:center;
+}
+
+nav ul{
+    flex-direction:column;
+    align-items:center;
+}
+
+.hero{
+    min-height:60vh;
+    padding:40px 20px;
+}
+
+.hero h1{
+    font-size:2rem;
+}
+
+.hero p{
+    font-size:.95rem;
+}
+
+.btn{
+    width:100%;
+    max-width:300px;
+}
+
+.grid{
+    grid-template-columns:1fr;
+}
+
+.card{
+    padding:20px;
+}
+
+footer{
+    font-size:.9rem;
+}
+
+}
+
+@media (max-width:480px){
+
+.hero h1{
+    font-size:1.7rem;
+}
+
+.hero p{
+    font-size:.9rem;
+}
+
+section h2{
+    font-size:1.5rem;
+}
+
+.header{
+    padding:10px;
+}
+
+.acciones input{
+    max-width:100%;
+}
+
+.carrito{
+    width:100%;
+    text-align:center;
+}
+
+}
